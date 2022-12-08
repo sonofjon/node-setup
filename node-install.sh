@@ -1,3 +1,12 @@
+# Install Node Version Manager
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+
+# Install Node
+nvm install --lts
+
+# Upgrade npm on current Node version
+nvm install-latest-npm
+
 # Install language servers
 npm install -g ansible-language-server
 npm install -g bash-language-server
