@@ -11,7 +11,7 @@ nvm install-latest-npm
 npm install -g ansible-language-server
 npm install -g bash-language-server
 npm install -g pyright
-npm install -g typescript-language-server
+npm install -g typescript-language-server typescript
 npm install -g yaml-language-server
 npm install -g vscode-langservers-extracted   # css, html, js, json, markdown
 
