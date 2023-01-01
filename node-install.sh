@@ -44,7 +44,7 @@ nvm install-latest-npm
 ## Install packages
 
 # Install language servers
-npm install -g ansible-language-server
+npm install -g @ansible/ansible-language-server
 npm install -g bash-language-server
 npm install -g pyright
 npm install -g typescript-language-server typescript
