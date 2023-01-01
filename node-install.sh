@@ -1,12 +1,37 @@
 ## Install Node Version Manager
 
 # nvm (script)
-NVM_PROFILE="$HOME/.bashrc_local"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | PROFILE=$NVM_PROFILE bash   # TODO: generalize to latest version
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#   Version number is hard coded!
 
+# NVM_PROFILE="$HOME/.bashrc_local"
+
+# curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | PROFILE=$NVM_PROFILE bash   # TODO: generalize to latest version
+
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# nvm (manual)
+#   Uses the lates version!
+
+NVM_PROFILE="$HOME/.bashrc_local"
+
+export NVM_DIR="$HOME/.nvm" && (
+  git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
+  cd "$NVM_DIR"
+  git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
+) && \. "$NVM_DIR/nvm.sh"
+
+SOURCE_STR="\\nexport NVM_DIR=\"${PROFILE_INSTALL_DIR}\"\\n[ -s \"\$NVM_DIR/nvm.sh\" ] && \\. \"\$NVM_DIR/nvm.sh\"  # This loads nvm\\n"
+COMPLETION_STR='[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion\n'
+
+if ! command grep -qc '/nvm.sh' "$NVM_PROFILE"; then
+    nvm_echo "=> Appending nvm and bash_completion source strings to $NVM_PROFILE"
+    command printf "${SOURCE_STR}" >> "$NVM_PROFILE"
+    command printf "$COMPLETION_STR" >> "$NVM_PROFILE"
+else
+    nvm_echo "=> nvm source string already in ${NVM_PROFILE}"
+fi
 
 ## Install Node
 
