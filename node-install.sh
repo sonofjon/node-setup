@@ -1,11 +1,22 @@
-# Install Node Version Manager
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+## Install Node Version Manager
+
+# nvm (script)
+NVM_PROFILE="$HOME/.bashrc_local"
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | PROFILE=$NVM_PROFILE bash   # TODO: generalize to latest version
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+## Install Node
 
 # Install Node
 nvm install --lts
 
 # Upgrade npm on current Node version
 nvm install-latest-npm
+
+## Install packages
 
 # Install language servers
 npm install -g ansible-language-server
