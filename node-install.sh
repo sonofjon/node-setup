@@ -12,7 +12,7 @@
 # # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # nvm (manual)
-#   Uses the lates version!
+#   Uses the latest version!
 
 NVM_PROFILE="$HOME/.bashrc_local"
 
